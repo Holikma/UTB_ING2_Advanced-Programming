@@ -1,0 +1,195 @@
+% ------------------------
+% CORE PACKAGES
+% ------------------------
+
+\usepackage[utf8]{inputenc}
+\usepackage[main=slovak,english]{babel}
+\usepackage{times}
+\usepackage{etoolbox}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{pdfpages}
+\usepackage{listings}
+\usepackage[table,rgb]{xcolor}
+\usepackage{setspace}
+\usepackage{tabularx}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{bookmark}
+\usepackage{tocloft}
+\usepackage{csquotes}
+\usepackage{url}
+\usepackage[labelsep=colon,tableposition=top,justification=raggedright, singlelinecheck=off, font={footnotesize,bf,sf}]{caption}
+\usepackage{chngcntr}
+
+\usepackage{hyperref}
+
+% ------------------------
+% BIBLIOGRAPHY (same as class)
+% ------------------------
+\usepackage[style=ieee,backend=bibtex,giveninits=true,sorting=nyt,maxbibnames=6,minbibnames=3]{biblatex}
+
+
+\AtBeginBibliography{%
+    \setstretch{1.05} 
+    \setlength{\parskip}{0pt}
+    \setlength{\itemsep}{0pt} 
+    \renewcommand*{\bibfont}{\normalsize}
+    \renewcommand*{\UrlFont}{\normalsize\itshape} 
+    % set bold to author names
+    \renewcommand*{\mkbibnamefamily}[1]{\textbf{#1}}
+}
+
+\addbibresource{literatura.bib}
+
+% ------------------------
+% PAGE GEOMETRY (matches class)
+% ------------------------
+\usepackage[a4paper, top=2.5cm, bottom=2.5cm, left=2.70cm, right=2.70cm]{geometry}
+\setlength{\headheight}{6mm}
+\setlength{\headsep}{6mm}
+\setlength{\parskip}{0pt}
+\setstretch{1.05}
+\sloppy
+
+% ------------------------
+% SECTION FORMATTING
+% ------------------------
+\titlespacing*{\section}{0pt}{0pt}{18pt}
+\titlespacing*{\subsection}{0pt}{16pt}{4pt}
+\titlespacing*{\subsubsection}{0pt}{16pt}{4pt}
+
+\titleformat*{\section}{\Large\sffamily\bfseries}
+\titleformat*{\subsection}{\large\sffamily\bfseries}
+\titleformat*{\subsubsection}{\normalsize\sffamily\bfseries}
+\titleformat*{\paragraph}{\normalsize\sffamily\bfseries}
+
+% ------------------------
+% HEADERS & FOOTERS
+% ------------------------
+\pagestyle{fancy} 
+\fancyhf{} % clear all header and footer fields
+\renewcommand{\headrulewidth}{1pt} 
+\fancyhead[R]{\bfseries\thepage}  
+\fancyhead[L]{\bfseries{UTB: FAI - Fakulta Aplikovanej Informatiky}}
+
+% ------------------------
+% CAPTION SPACING
+% ------------------------
+\captionsetup[figure]{aboveskip=5pt, belowskip=-5pt}
+\captionsetup[table]{aboveskip=5pt, belowskip=0pt}
+\captionsetup[lstlisting]{position=bottom, aboveskip=15pt, belowskip=10pt}
+
+% ------------------------
+% HYPERLINKS
+% ------------------------
+
+\hypersetup{
+    breaklinks=true,
+    unicode=true,
+    colorlinks=true,
+    linkcolor=black,      % internal links (sections, etc.)
+    citecolor=red,      % citations
+    filecolor=black,      % file links
+    urlcolor=black,       % external links
+}
+
+% ------------------------
+% TOC, LIST OF FIGURES/TABLES
+% ------------------------
+\graphicspath{ {../figures/} }
+
+\setlength{\cftaftertoctitleskip}{28pt}
+\setlength{\cftafterlottitleskip}{28pt}
+\setlength{\cftafterloftitleskip}{28pt}
+
+% Nastavení vertikální mezery před stylem část, nadpis 1--3
+\setlength{\cftbeforepartskip}{4pt}
+\setlength{\cftbeforesecskip}{4pt}
+\setlength{\cftbeforesubsecskip}{4pt}
+\setlength{\cftbeforesubsubsecskip}{4pt}
+
+% Odsazení zleva pro styl část, nadpis 1--3
+\setlength{\cftpartindent}{0mm}
+\setlength{\cftsecindent}{0mm}
+\setlength{\cftsubsecindent}{0mm}
+\setlength{\cftsubsubsecindent}{0mm}
+
+% Nastavení fontu pro styl část, nadpis 1--3
+\renewcommand{\cftpartfont}{\bfseries}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsubsecfont}{}% \scshape ... small caps
+\renewcommand{\cftsubsubsecfont}{}
+
+% Odsazení čísla a textu nadpisu/titulku, nadpis 1--3
+\cftsetindents{sec}{0mm}{10mm}
+\cftsetindents{subsec}{5mm}{12.5mm}
+\cftsetindents{subsubsec}{10mm}{15mm}
+\cftsetindents{fig}{0mm}{15mm}
+\cftsetindents{tab}{0mm}{15mm}
+
+% Nastavení vodící čáry pro styl část, nadpis 1--3, obrázky a tabulky
+\renewcommand{\cftdot}{\ensuremath{.}} % tímto příkazem lze změnit vodící tečky v obsahu na jiný znak
+\renewcommand{\cftpartleader}{\cftdotfill{0.3}}
+\renewcommand{\cftsecleader}{\cftdotfill{0.3}}
+\renewcommand{\cftsubsecleader}{\cftdotfill{0.3}}
+\renewcommand{\cftsubsubsecleader}{\cftdotfill{0.3}}
+\renewcommand{\cftfigleader}{\cftdotfill{0.3}}
+\renewcommand{\cfttableader}{\cftdotfill{0.3}}
+
+\renewcommand{\cfttabpresnum}{Tab. }
+\renewcommand{\cftfigpresnum}{Obr. } 
+\setlength{\cftfignumwidth}{24mm}
+\setlength{\cfttabnumwidth}{24mm}
+
+\counterwithin{figure}{section}
+\renewcommand{\thefigure}{\thesection.\arabic{figure}}
+
+\counterwithin{table}{section}
+\renewcommand{\thetable}{\thesection.\arabic{table}}
+
+\renewcommand{\tablename}{Tab.}
+\captionsetup[table]{name=Tab.,labelfont=bf}
+
+% --------------------------
+% TABLE OF CONTENT
+% --------------------------
+\makeatletter
+\def\tofc{%
+    \clearpage
+    \pagestyle{empty}
+    \renewcommand{\cfttoctitlefont}{\LARGE\bfseries\thispagestyle{empty}} 
+    \tableofcontents
+    \clearpage
+    \pagestyle{fancy}
+}
+\makeatother
+% --------------------------
+% LIST OF FIGURES
+% --------------------------
+
+\def\loff{%
+    \newpage
+    \phantomsection
+    \renewcommand{\cftloftitlefont}{\LARGE\bfseries\thispagestyle{fancy}}
+    \addcontentsline{toc}{section}{Zoznam obrázkov}
+    \listoffigures
+    \clearpage 
+}
+
+% --------------------------
+% LIST OF TABLES
+% --------------------------
+\def\loft{%
+    \newpage
+    \phantomsection
+    \renewcommand{\cftlottitlefont}{\LARGE\bfseries\thispagestyle{fancy}}
+    \addcontentsline{toc}{section}{Zoznam tabuliek}
+    \listoftables
+    \clearpage 
+}
+
+% --------------------------
+% FIGURE SPACING
+% --------------------------
