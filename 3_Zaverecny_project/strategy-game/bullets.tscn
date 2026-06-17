@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://b2wt2qe65l5cd"]
+
+[ext_resource type="Texture2D" uid="uid://db3d4sc5e7b00" path="res://icon.svg" id="1_daqjf"]
+[ext_resource type="Script" uid="uid://b53ax2l1h67wy" path="res://bullets.gd" id="2_qumpn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u0h1s"]
+size = Vector2(133, 135.25)
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=20237686]
+script = ExtResource("2_qumpn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1902881947]
+position = Vector2(0.5, -2.625)
+shape = SubResource("RectangleShape2D_u0h1s")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=235220970]
+texture = ExtResource("1_daqjf")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=753930632]
+position = Vector2(-3, -8)
+rect = Rect2(-97, -85, 200, 182)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

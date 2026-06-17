@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dwvpfa5jpoc61"]
+
+[ext_resource type="Script" uid="uid://cundb0h0vgoo2" path="res://gun.gd" id="1_0e48y"]
+[ext_resource type="Texture2D" uid="uid://db3d4sc5e7b00" path="res://icon.svg" id="2_epypp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hol4"]
+size = Vector2(132, 132)
+
+[node name="HERO" type="Node2D" unique_id=325800002]
+position = Vector2(591, 304)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=366874667]
+script = ExtResource("1_0e48y")
+
+[node name="Node2D" type="Node2D" parent="CharacterBody2D" unique_id=1401219597]
+position = Vector2(72, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=1597931831]
+texture = ExtResource("2_epypp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1913843890]
+shape = SubResource("RectangleShape2D_0hol4")
