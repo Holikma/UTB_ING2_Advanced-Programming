@@ -5,9 +5,12 @@ signal main_menu(origin: String)
 
 var victorious: bool
 
+@onready var sound: AudioStreamPlayer = $VictorySFX
+
 func _ready() -> void:
 	if victorious:
 		$VB/Result.set_text("Victorious")
+		sound.play()
 	
 func _on_replay_pressed() -> void:
 	repeat_level.emit("end_game_screen")

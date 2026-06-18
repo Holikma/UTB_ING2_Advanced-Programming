@@ -22,6 +22,7 @@ var hitpoints_max: int
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var animation_playback: AnimationNodeStateMachinePlayback = $AnimationTree["parameters/playback"]
+@onready var attack_sound: AudioStreamPlayer = get_node("/root/SceneHandler/HITSFX")
 
 func _ready() -> void:
 	hitpoints_max = hitpoints
@@ -92,7 +93,6 @@ func attack() -> void:
 	
 func take_damage(damage_taken: int) -> void:
 	hitpoints -= damage_taken
-	
 	@warning_ignore("integer_division")
 	update_hp_bar.emit((hitpoints * 100) / hitpoints_max)
 	
@@ -106,4 +106,5 @@ func death() -> void:
 	game_over.emit(false)
 
 func _on_hit_box_area_entered(area: Area2D) -> void:
+	attack_sound.play()
 	area.owner.take_damage(attack_damage)

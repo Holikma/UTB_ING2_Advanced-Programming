@@ -3,8 +3,18 @@
 [ext_resource type="Script" uid="uid://dnb62fy0kl7cu" path="res://scenes/main/scene_handler.gd" id="1_4bqbg"]
 [ext_resource type="PackedScene" uid="uid://dovtbmvk5il4y" path="res://scenes/ui/main_menu.tscn" id="2_wtu2y"]
 [ext_resource type="PackedScene" uid="uid://wviy6n31yw55" path="res://scenes/main/game_scene.tscn" id="3_0wxda"]
+[ext_resource type="AudioStream" uid="uid://c82xmcefjqq8d" path="res://assets/SoundEffects/hit.wav" id="4_52vtj"]
+[ext_resource type="AudioStream" uid="uid://cv4t4kbbl8lqc" path="res://assets/SoundEffects/backgroundSFX.mp3" id="5_76m4p"]
 
 [node name="SceneHandler" type="Node" unique_id=866709884]
 script = ExtResource("1_4bqbg")
 main_menu_packed = ExtResource("2_wtu2y")
 game_scene_packed = ExtResource("3_0wxda")
+
+[node name="HITSFX" type="AudioStreamPlayer" parent="." unique_id=219054714]
+stream = ExtResource("4_52vtj")
+
+[node name="BackGroundSFX" type="AudioStreamPlayer" parent="." unique_id=1482896514]
+stream = ExtResource("5_76m4p")
+autoplay = true
+parameters/looping = true

@@ -28,6 +28,7 @@ var state: State = State.IDLE
 @onready var animation_playback: AnimationNodeStateMachinePlayback = $AnimationTree["parameters/playback"]
 @onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
+@onready var attack_sound: AudioStreamPlayer = get_node("/root/SceneHandler/HITSFX")
 
 func _ready() -> void:
 	animation_tree.set_active(true)
@@ -113,5 +114,5 @@ func death() -> void:
 
 
 func _on_hit_box_area_entered(area: Area2D) -> void:
-	print("HIT PLAYER")
+	attack_sound.play()
 	area.owner.take_damage(attack_damage)

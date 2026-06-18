@@ -2,6 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://cqp21iwq4rwq6" path="res://assets/fonts/ARCADECLASSIC.TTF" id="1_ispm1"]
 [ext_resource type="Script" uid="uid://c510ihba75htv" path="res://scenes/ui/end_game_screen.gd" id="1_m8xae"]
+[ext_resource type="AudioStream" uid="uid://fck5i2ibglsg" path="res://assets/SoundEffects/Victory.mp3" id="2_ketox"]
 [ext_resource type="Texture2D" uid="uid://rk0c80vko3yp" path="res://ui/buttons/panels/silver_panel.png" id="2_m8xae"]
 
 [node name="EndGameScreen" type="Control" unique_id=1564189886]
@@ -12,6 +13,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_m8xae")
+
+[node name="VictorySFX" type="AudioStreamPlayer" parent="." unique_id=1225995423]
+stream = ExtResource("2_ketox")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=934975783]
 layout_mode = 1

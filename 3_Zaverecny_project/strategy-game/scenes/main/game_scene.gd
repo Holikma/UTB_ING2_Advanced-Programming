@@ -9,7 +9,6 @@ var killed_enemies: int = 0
 
 @onready var HUD: Control = $UI/HUD
 
-
 func _ready() -> void:
 	var enemy_array: Array = get_tree().get_nodes_in_group("enemies")
 	total_enemies = enemy_array.size()
@@ -38,11 +37,15 @@ func experience_gained(exp_gain: int) -> void:
 		PlayerData.experience = new_experience
 		
 func level_up(new_experience: int) -> void:
+	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 	new_experience -= LevelData.LEVEL_THRESHOLDS[PlayerData.level - 1]
 	PlayerData.level += 1
 	PlayerData.experience = new_experience
+	player.hitpoints = player.hitpoints_max
+	player.update_hp_bar.emit((player.hitpoints * 100) / player.hitpoints_max)
 	levelup.emit()
 	HUD.update_level_indicator()
+	
 
 
 func display_end_game_screen(victorious: bool) -> void:
