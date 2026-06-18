@@ -1,1 +1,35 @@
 \section{Záver}
+
+\paragraph{}
+Dogmatické uplatňovanie princípov \textit{Clean Code} môže viesť k predčasnej optimalizácii, preťaženiu funkcionalitami a over‑engineeringu, ak sa tieto princípy používajú bez kontextu alebo bez merania prínosov. Keď sa kvalita kódu stáva vyššou prioritou než dodanie hodnoty používateľovi alebo než reálne potreby systému, vzniká riziko dlhšieho času vývoja a skrytého technického dlhu \cite{HIDDENCOST_KESWANI2025}.
+
+\subsection{Kedy je \textit{Clean Code} kontraproduktívny}
+
+\begin{itemize}
+	\item Ak sa princípy uplatňujú slepo bez ohľadu na kontext — výsledkom môže byť zbytočná komplexita a spomalenie vývoja.
+	\item Ak sa prednostne rieši implementačná čistota namiesto návratu k používateľovi a merateľných metrík (výkon, stabilita, použiteľnosť).
+	\item Ak architektúra obsahuje vrstvy a abstrakcie postavené na hypotézach o budúcich požiadavkách, ktoré sa nikdy nepreukážu.
+\end{itemize}
+
+\subsection{Praktické odporúčania}
+
+\begin{enumerate}
+	\item \textbf{Najprv merajte:} Pred optimalizáciou alebo prepracovaním profilu a zistite, kde je skutočné úzke miesto. Zamerajte úsilie na kritické 20 % kódu, ktoré prinášajú 80 % dopadu \cite{HIDDENCOST_KESWANI2025}.
+	\item \textbf{Preferujte jednoduché rozhrania:} Chráňte kontrakty a rozhrania viac než implementácie — zmena implementácie je lacná, zmena rozhrania nie.
+	\item \textbf{Vyhnite sa predikciám:} Nevháňajte sa do generických riešení (plugin systémy, mikroservisy) bez dôkazov o potrebe.
+	\item \textbf{Automatizované kontroly:} Použite statickú analýzu, testy a architektonické kontroly na včasné odhalenie zápachov bez nadmerného manuálneho refaktorovania.
+	\item \textbf{Kultúra tímu:} Diskutujte trade‑offs otvorene a rozhodujte podľa obchodných priorít, nie ideologických pravidiel \cite{CLEANCODE_SAM2011}.
+\end{enumerate}
+
+\subsection{Príklady anti‑patternov (rýchla kontrola)}
+
+Ak pri revízii návrhu narazíte na nasledujúce návrhy, zvážte či nejde o over‑engineering:
+
+\begin{itemize}
+	\item Vytváranie microservisu pre workflow, ktorý patrí do jedného bounded contextu.
+	\item Pridanie úplnej state‑management vrstvy pre stránku s pár komponentmi.
+	\item Budovanie plugin systému pre funkciu, ktorá bude mať pravdepodobne jediného spotrebiteľa.
+\end{itemize}
+
+\paragraph{}
+\textbf{Záver:} \textit{Clean Code} zostáva hodnotným súborom princípov — ak sa používa ako pragmatické usmernenie a dopĺňa ho meranie, automatizácia a dôraz na hodnotu používateľa. Ak sa však stane dogmou, môže brzdiť dodávky a vytvárať nečakané náklady. Preto odporúčame kombinovať zásady čistého kódu so zásadou "najprv merajte, potom refaktorujte" a so zdravým skepticizmom voči predikciám prípadného rastu.

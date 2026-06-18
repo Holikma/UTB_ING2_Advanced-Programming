@@ -1,0 +1,112 @@
+[gd_scene format=3 uid="uid://ckltrlcqs4qgw"]
+
+[ext_resource type="FontFile" uid="uid://cqp21iwq4rwq6" path="res://assets/fonts/ARCADECLASSIC.TTF" id="1_ispm1"]
+[ext_resource type="Script" uid="uid://c510ihba75htv" path="res://scenes/ui/end_game_screen.gd" id="1_m8xae"]
+[ext_resource type="Texture2D" uid="uid://rk0c80vko3yp" path="res://ui/buttons/panels/silver_panel.png" id="2_m8xae"]
+
+[node name="EndGameScreen" type="Control" unique_id=1564189886]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m8xae")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=934975783]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.3137255)
+
+[node name="VB" type="VBoxContainer" parent="." unique_id=1289519378]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 150
+alignment = 1
+
+[node name="Result" type="Label" parent="VB" unique_id=214771985]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/shadow_outline_size = 16
+theme_override_fonts/font = ExtResource("1_ispm1")
+theme_override_font_sizes/font_size = 164
+text = "Game OVer"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="HBoxContainer" parent="VB" unique_id=416590328]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Replay" type="TextureButton" parent="VB/Button" unique_id=372760956]
+custom_minimum_size = Vector2(350, 130)
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("2_m8xae")
+texture_pressed = ExtResource("2_m8xae")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="VB/Button/Replay" unique_id=26374216]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -30.5
+offset_bottom = 30.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/shadow_outline_size = 16
+theme_override_fonts/font = ExtResource("1_ispm1")
+theme_override_font_sizes/font_size = 60
+text = "Replay"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainMenu" type="TextureButton" parent="VB/Button" unique_id=1450937898]
+custom_minimum_size = Vector2(350, 130)
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("2_m8xae")
+texture_pressed = ExtResource("2_m8xae")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="VB/Button/MainMenu" unique_id=253944504]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -30.5
+offset_bottom = 30.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/shadow_outline_size = 16
+theme_override_fonts/font = ExtResource("1_ispm1")
+theme_override_font_sizes/font_size = 60
+text = "Main Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="VB/Button/Replay" to="." method="_on_replay_pressed"]
+[connection signal="pressed" from="VB/Button/MainMenu" to="." method="_on_main_menu_pressed"]

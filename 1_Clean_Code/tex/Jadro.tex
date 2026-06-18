@@ -1,1 +1,44 @@
-\section{Jadro}
+\section{Definícia Clean Code a súvisiacich pojmov}
+
+Na začiatok je potrebné zadefinovať pojem "Clean Code". V literatúre sa tento pojem často spája s knihou: \textbf{Clean Code: A Handbook of Agile Software Craftsmanship} od Roberta C. Martina \cite{CLEANCODE_MARTIN2008}, kde autor prezentuje súbor princípov, pravidiel a odporúčaní, ktoré majú za cieľ zlepšiť čitateľnosť, udržiavateľnosť a kvalitu písaného kódu.
+
+Medzi hlavné princípy Clean Code patrí:
+
+\begin{itemize}
+    \item \textbf{Malé a zmysluplné funkcie:} Funkcie by mali byť krátke, robiť jednu vec a mať jasný názov, ktorý vystihuje ich účel.
+    \item \textbf{Zmysluplné pomenovania:} Premenné, funkcie a triedy by mali mať názvy, ktoré jasne opisujú ich účel a zlepšujú čitateľnosť kódu.
+    \item \textbf{Minimalizácia komentárov:} Kód by mal byť dostatočne čitateľný, aby nevyžadoval nadmerné komentovanie. Komentáre by mali byť použité len na vysvetlenie zložitých častí kódu alebo na poskytnutie kontextu.
+    \item \textbf{Princíp DRY (Don't Repeat Yourself):} Opakujúci sa kód by mal byť refaktorovaný do samostatných funkcií alebo modulov, aby sa znížila duplicita a zvýšila udržiavateľnosť.
+\end{itemize}
+
+Téma Clean Code obsahuje aj súvisiace pojmy, ktoré sa často spomínajú v diskusiách o softvérovom inžinierstve a vývoji softvéru. Medzi tieto pojmy patrí:
+
+\begin{itemize}
+    \item \textbf{Predčasná optimalizácia:} Situácie, keď sa vývojári snažia optimalizovať kód predtým, než je to potrebné, čo môže viesť k zložitejšiemu a menej čitateľnému kódu. Predtým, než začneme optimalizovať, je dôležité mať jasnú predstavu o tom, kde sú skutočné problémy s výkonom a či je optimalizácia naozaj potrebná. Mikro-optimalizácie malých funkcií môžu mať minimálny dopad na celkový výkon komplexného systému.
+    \item \textbf{Preťažovanie funkcionalitami:} Pridávanie príliš veľa funkcií do systému, ktoré nie sú nevyhnutné pre jeho základnú funkcionalitu, čo môže znižovať jeho udržiavateľnosť. S týmto súvisí aj pojem "feature creep", ktorý označuje postupné pridávanie nových funkcií do softvéru, často bez ohľadu na pôvodný plán alebo potreby používateľov.Taktiež z hľadiska Clean Code je spájaný tento pojem s DRY princípom, pretože pridávanie nadbytočných funkcií môže viesť k zníženiu čitateľnosti kódu.
+    \item \textbf{Over-engineering:} Nadmerné navrhovanie systémov s cieľom predvídať budúce potreby, čo môže viesť k zbytočne zložitým riešeniam. Aj keď Clean Code podporuje dobré návrhové princípy, nadmerné zameranie sa na architektonickú čistotu môže spôsobiť, že vývojári budú tráviť príliš veľa času navrhovaním riešení pre hypotetické scenáre. 
+\end{itemize}
+
+\subsection{Kritika dogmatického uplatňovania \textit{Clean Code}}
+
+Niektorí autori a praktici upozorňujú, že princípy \textit{Clean Code} by sa mali chápať ako usmernenie, nie ako absolútny zákon. Esej o "Clean" zdôrazňuje, že "čistota" kódu je kontextuálna — čo je čitateľné a užitočné v jednom projekte, môže byť zbytočne komplikované v inom. Dôležité je hodnotiť prínos refaktoringu vzhľadom na dodávanú hodnotu a náklady na údržbu \cite{CLEANCODE_SAM2011}.
+
+Konkrétne riziká dogmatického prístupu zahŕňajú zvýšenú kognitívnu záťaž, zbytočné vrstvy abstrakcie a skrytý technický dlh, ktorý vzniká pri kontinuálnom prepracovávaní riešení bez jasného merania benefitov \cite{HIDDENCOST_KESWANI2025}.
+
+\subsection{"Clean Code" anti‑patterny a bežné symptómy over‑engineeringu}
+
+Nasledujúce scenáre často signalizujú, že snaha o "čistotu" prešla do prehnanej špecializácie a nadmerného navrhovania:
+
+\begin{itemize}
+    \item \textbf{Vytvorenie microservisu pre workflow, ktorý patrí do jediného bounded contextu:} rozdeľovanie funkcionality bez dôkazov o samostatnej škálovateľnosti alebo nezávislom životnom cykle zvyšuje zložitosť infraštruktúry a komunikácie.
+    \item \textbf{Pridanie plnohodnotnej state‑management vrstvy pre stránku s niekoľkými komponentmi:} nadmerné nástroje pre malú DOM/UX logiku zvyšujú overhead a znižujú rýchlosť vývoja.
+    \item \textbf{Budovanie plugin systému pre funkciu s jediným spotrebiteľom:} predikcia budúcich spotrebiteľov môže viesť k zbytočnej všeobecnosti a nákladom na testovanie a dokumentáciu.
+\end{itemize}
+
+Tieto anti‑patterny majú spoločné príznaky: dlhšie plánovanie, viac infraštruktúrneho kódu, vyšší počet integračných bodov a znížená schopnosť rýchlo dodať hodnotu používateľovi. Autori, ktorí skúmajú skryté náklady "čistého" kódu, odporúčajú merať dopad takýchto rozhodnutí a preferovať pragmatické riešenia, kým sa nepreukáže potreba zložitosti \cite{HIDDENCOST_KESWANI2025}.
+
+\subsection{Meranie a pragmatizmus}
+
+Praktický prístup odporúča: najprv merať (profilovanie, telemetria, používateľská spätná väzba), až potom optimalizovať alebo refaktorovať. Zameranie na rozhrania, kontrakty a testovateľné správanie často prináša výraznejší benefit než predčasné zdokonaľovanie implementácií \cite{CLEANCODE_SAM2011,HIDDENCOST_KESWANI2025}.
+
+

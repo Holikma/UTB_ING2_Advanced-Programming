@@ -258,8 +258,11 @@ nodes/output/position = Vector2(816, 112)
 nodes/BlendSpace2D/node = SubResource("AnimationNodeBlendSpace2D_58kc7")
 nodes/BlendSpace2D/position = Vector2(288, 64)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_nh4ur")
-nodes/TimeScale/position = Vector2(528, 80)
+nodes/TimeScale/position = Vector2(528, 64)
 node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"BlendSpace2D"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bj7e2"]
+animation = &"DEAD"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bjvvg"]
 animation = &"IDLE"
@@ -282,15 +285,20 @@ advance_mode = 2
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j0oqr"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ovg4i"]
 states/ATTACK/node = SubResource("AnimationNodeBlendTree_bjvvg")
-states/ATTACK/position = Vector2(441.00595, 189.6)
+states/ATTACK/position = Vector2(441.1612, 188)
+states/DEAD/node = SubResource("AnimationNodeAnimation_bj7e2")
+states/DEAD/position = Vector2(582.7488, 122.4)
 states/End/position = Vector2(736.8, 122.4)
 states/IDLE/node = SubResource("AnimationNodeAnimation_bjvvg")
 states/IDLE/position = Vector2(303.6, 99.84)
+states/Start/position = Vector2(172, 99.871994)
 states/WALK/node = SubResource("AnimationNodeAnimation_8akj5")
 states/WALK/position = Vector2(441.2, 53.696)
-transitions = ["Start", "IDLE", SubResource("AnimationNodeStateMachineTransition_bj7e2"), "IDLE", "WALK", SubResource("AnimationNodeStateMachineTransition_1murt"), "WALK", "IDLE", SubResource("AnimationNodeStateMachineTransition_5sj0x"), "IDLE", "ATTACK", SubResource("AnimationNodeStateMachineTransition_8akj5"), "WALK", "ATTACK", SubResource("AnimationNodeStateMachineTransition_ovg4i"), "ATTACK", "IDLE", SubResource("AnimationNodeStateMachineTransition_7wli1")]
+transitions = ["Start", "IDLE", SubResource("AnimationNodeStateMachineTransition_bj7e2"), "IDLE", "WALK", SubResource("AnimationNodeStateMachineTransition_1murt"), "WALK", "IDLE", SubResource("AnimationNodeStateMachineTransition_5sj0x"), "IDLE", "ATTACK", SubResource("AnimationNodeStateMachineTransition_8akj5"), "WALK", "ATTACK", SubResource("AnimationNodeStateMachineTransition_ovg4i"), "ATTACK", "IDLE", SubResource("AnimationNodeStateMachineTransition_7wli1"), "Start", "DEAD", SubResource("AnimationNodeStateMachineTransition_j0oqr")]
 graph_offset = Vector2(-353.6512, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1hmtu"]
@@ -300,7 +308,7 @@ size = Vector2(38, 8)
 radius = 18.0
 height = 68.0
 
-[node name="Player" type="CharacterBody2D" unique_id=809424795 groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=809424795 groups=["Enemies", "player"]]
 position = Vector2(-4, -31)
 script = ExtResource("1_1hmtu")
 
