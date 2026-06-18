@@ -1,44 +1,137 @@
 \section{Definícia Clean Code a súvisiacich pojmov}
 
-Na začiatok je potrebné zadefinovať pojem "Clean Code". V literatúre sa tento pojem často spája s knihou: \textbf{Clean Code: A Handbook of Agile Software Craftsmanship} od Roberta C. Martina \cite{CLEANCODE_MARTIN2008}, kde autor prezentuje súbor princípov, pravidiel a odporúčaní, ktoré majú za cieľ zlepšiť čitateľnosť, udržiavateľnosť a kvalitu písaného kódu.
-
-Medzi hlavné princípy Clean Code patrí:
+Na začiatok je potrebné zadefinovať pojem "Clean Code". V literatúre sa tento pojem často spája s knihou: \textbf{Clean Code: A Handbook of Agile Software Craftsmanship} od Roberta C. Martina \cite{CLEANCODE_MARTIN2008}, kde autor prezentuje súbor princípov, pravidiel a odporúčaní, ktoré majú za cieľ zlepšiť čitateľnosť, udržiavateľnosť a kvalitu písaného kódu. Medzi hlavné princípy Clean Code patrí:
 
 \begin{itemize}
     \item \textbf{Malé a zmysluplné funkcie:} Funkcie by mali byť krátke, robiť jednu vec a mať jasný názov, ktorý vystihuje ich účel.
+    
     \item \textbf{Zmysluplné pomenovania:} Premenné, funkcie a triedy by mali mať názvy, ktoré jasne opisujú ich účel a zlepšujú čitateľnosť kódu.
+    
     \item \textbf{Minimalizácia komentárov:} Kód by mal byť dostatočne čitateľný, aby nevyžadoval nadmerné komentovanie. Komentáre by mali byť použité len na vysvetlenie zložitých častí kódu alebo na poskytnutie kontextu.
+    
     \item \textbf{Princíp DRY (Don't Repeat Yourself):} Opakujúci sa kód by mal byť refaktorovaný do samostatných funkcií alebo modulov, aby sa znížila duplicita a zvýšila udržiavateľnosť.
 \end{itemize}
 
 Téma Clean Code obsahuje aj súvisiace pojmy, ktoré sa často spomínajú v diskusiách o softvérovom inžinierstve a vývoji softvéru. Medzi tieto pojmy patrí:
 
+\noindent\textbf{Predčasná optimalizácia:} Situácie, keď sa vývojári snažia optimalizovať kód predtým, než je to potrebné, čo môže viesť k zložitejšiemu a menej čitateľnému kódu. Predtým, než začneme optimalizovať, je dôležité mať jasnú predstavu o tom, kde sú skutočné problémy s výkonom a či je optimalizácia naozaj potrebná. Mikro-optimalizácie malých funkcií môžu mať minimálny dopad na celkový výkon komplexného systému \cite{CLEANCODE_MARTIN2008}.
+
+\noindent\textbf{Preťažovanie funkcionalitami:} Pridávanie príliš veľa funkcií do systému, ktoré nie sú nevyhnutné pre jeho základnú funkcionalitu môže znižovať jeho udržiavateľnosť. S týmto súvisí aj pojem "feature creep", ktorý označuje postupné pridávanie nových funkcií do softvéru, často bez ohľadu na pôvodný plán alebo potreby používateľov. Taktiež z hľadiska Clean Code je spájaný tento pojem s DRY princípom, pretože pridávanie nadbytočných funkcií môže viesť k zníženiu čitateľnosti kódu \cite{CLEANCODE_MARTIN2008}.
+
+\noindent\textbf{Over-engineering:} Nadmerné navrhovanie systémov s cieľom predvídať budúce potreby, čo môže viesť k zbytočne zložitým riešeniam. Aj keď Clean Code podporuje dobré návrhové princípy, nadmerné zameranie sa na architektonickú čistotu môže spôsobiť, že vývojári budú tráviť príliš veľa času navrhovaním riešení pre hypotetické scenáre \cite{CLEANCODE_MARTIN2008}. 
+
+
+\subsection{Kritika dogmatického uplatňovania Clean Code}
+
+Niektorí autori a praktici upozorňujú, že princípy Clean Code by sa mali chápať ako usmernenie, nie ako pevne dané pravidlá. Clean Code zdôrazňuje, že čistota kódu je kontextuálna — čo je čitateľné a užitočné v jednom projekte, môže byť zbytočne komplikované v inom. Dôležité je hodnotiť prínos refaktoringu vzhľadom na dodávanú hodnotu a náklady na údržbu \cite{CLEANCODE_SAM2011}.
+
+Konkrétne riziká dogmatického prístupu zahŕňajú zvýšenú kognitívnu záťaž, zbytočné vrstvy abstrakcie a skrytý technický dlh, ktorý vzniká pri pravidelnom prepracovávaní riešení bez jasného merania benefitov \cite{HIDDENCOST_KESWANI2025}.
+
+\subsection{Reálne príklady spojené s nadmerným uplatňovaním Clean Code}
+
+Teraz sa môžeme pozrieť na konkrétne scenáre, ktoré signalizujú, že snaha písať čistý kód nemusí byť vždy najlepší nápad \cite{HIDDENCOST_KESWANI2025,REDDIT_CLEANCODE2025}:
+
+\subsubsection{Nadmerná abstrakcia a architektonická zložitosť}
+
+\textbf{Budovanie plugin systému pre funkciu s jediným spotrebiteľom:} Pre jednoduchú funkcionalitu je vytvorená architektúra založená na pluginoch, registrácii modulov a dynamickom načítavaní implementácií, hoci existuje iba jeden spôsob použitia a nepredpokladá sa rozšírenie. Namiesto jednej triedy vzniká množstvo rozhraní, tovární a registračných mechanizmov. Výsledkom je vyššia zložitosť, náročnejšie ladenie a väčšie náklady na údržbu bez reálneho prínosu.
+    
+\textbf{Generalizácia pred prvou potrebou:} Vývojári vytvoria všeobecný framework alebo konfigurovateľný systém ešte predtým, než sa objaví druhý prípad použitia. Predpokladané rozšírenia sa často nikdy nezrealizujú, zatiaľ čo vytvorená infraštruktúra zostáva súčasťou projektu a zvyšuje jeho komplexitu. Na jednej strane sa snažíme o flexibilitu a dá sa to brať ako investícia do budúcnosti, no na druhej strane sa môže stať, že táto flexibilita nikdy nebude využitá a stane sa zbytočnou záťažou \cite{HIDDENCOST_KESWANI2025,REDDIT_CLEANCODE2025}.
+
+\subsubsection{Prehnané rozkladanie kódu}
+
+\textbf{Rozdeľovanie logiky do extrémne malých metód:} Snaha o dodržanie pravidla „jedna funkcia robí jednu vec“ vedie k vytváraniu metód obsahujúcich jeden alebo dva riadky kódu. Programátor je nútený neustále preskakovať medzi definíciami funkcií, čo znižuje čitateľnosť a predlžuje ladenie.
+
+\subsubsection{Nadmerná aplikácia návrhových vzorov a konfigurácie}
+
+\textbf{Používanie návrhových vzorov bez reálnej potreby:} Pre jednoduché vytvorenie objektu sú implementované Factory, Builder alebo Strategy vzory, hoci postačuje priama konštrukcia objektu. Návrhové vzory sa stávajú cieľom samy osebe namiesto riešenia konkrétneho problému.
+
+\textbf{Konfigurovateľnosť všetkého:} Systém umožňuje konfigurovať správanie každej komponenty pomocou externých súborov, databázových nastavení alebo dependency injection kontajnerov. V praxi sa väčšina konfigurácií nikdy nemení, no aplikácia obsahuje množstvo dodatočného kódu potrebného na ich správu \cite{HIDDENCOST_KESWANI2025, REDDIT_CLEANCODE2025}.
+
+\subsubsection{Zbytočná architektonická a organizačná komplexita}
+
+\textbf{Abstrakcia nad stabilnými technológiami:} Nad databázou, súborovým systémom alebo knižnicou je vytvorená vlastná abstrakčná vrstva pre prípad budúcej zmeny technológie. V mnohých projektoch však k takejto zmene nikdy nedôjde. Vývojári tak musia dlhodobo udržiavať dodatočnú vrstvu bez reálneho využitia.
+
+\textbf{Refaktorovanie fungujúceho kódu bez obchodnej hodnoty:} Významná časť času je venovaná prepisovaniu existujúceho kódu s cieľom dosiahnuť čistejšiu architektúru. Funkcionalita sa nemení, používateľ nezískava nové možnosti a organizácia nenadobúda žiadnu priamu hodnotu, zatiaľ čo rastie riziko zavedenia nových chýb.
+
+\textbf{Mikroslužby pre malý systém:} Aplikácia s niekoľkými obrazovkami a jednou databázou je rozdelená na viacero mikroslužieb kvôli architektonickej čistote. Namiesto jednoduchého nasadenia vznikajú problémy s komunikáciou služieb, monitoringom, logovaním a orchestráciou \cite{HIDDENCOST_KESWANI2025,REDDIT_CLEANCODE2025}.
+
+
+Autori, ktorí skúmajú skryté náklady Clean Code odporúčajú merať dopad takýchto rozhodnutí a preferovať pragmatické riešenia, kým sa nepreukáže potreba zložitosti \cite{HIDDENCOST_KESWANI2025}.
+
+Prakticky je odporúčané najprv merať (profilovanie, telemetria, používateľská spätná väzba), až potom optimalizovať alebo refaktorovať. Zamerať sa na rozhrania, kontrakty a testovateľné správanie často prináša výraznejší benefit \cite{CLEANCODE_SAM2011, HIDDENCOST_KESWANI2025}.
+
+\newpage
+\section{Akým spôsobom AI generuje kód z repozitárov obsahujúci Clean Code?}
+
+Generovanie kódu pomocou modelov umelej inteligencie kombinuje viaceré techniky a zdroje informácií. Pri práci s repozitármi, ktoré obsahujú príklady dodržiavajúce princípy Clean Code, možno identifikovať niekoľko hlavných mechanizmov, ktoré ovplyvňujú výsledný štýl a kvalitu generovaného kódu:
+
+\subsection{Učenie zo zdrojového kódu a vzorov}
+
+\textbf{Tréningové dáta a vzory:} Modely sa učia štatistické vzory z veľkých množín zdrojových kódov. Ak sú v tréningovej množine zastúpené repozitáre dodržiavajúce Clean Code (čisté pomenovania, krátke funkcie, jednotné konvencie), model sa naučí preferovať podobné štruktúry a šablóny pri generovaní.
+    
+\textbf{Retrieval-augmented generation:} Pri generovaní špecifického úryvku kódu môže systém využiť dohľadávacie mechanizmy, ktoré do kontextu priradia relevantné súbory alebo útržky z repozitára (README, existujúce implementácie, testy). Tým sa zvyšuje konzistencia s miestnymi konvenciami a štýlom.
+    
+\subsection{Kontextové obohacovanie generovania}
+
+\textbf{Signály kvality v repozitári:} Ak repozitár obsahuje testy, konfiguračné súbory, CI skripty a komentáre, tieto prvky slúžia ako signály o preferovanom štýle a očakávanom správaní. Modely a nástroje postavené nad nimi môžu tieto signály použiť na generovanie kódu, ktorý spĺňa lokálne pravidlá (napr. štýl, ošetrenie chýb).
+    
+\textbf{Fine-tuning a špecializované modely:} Pre konkrétne organizácie alebo projekty sa často modely dolaďujú na interných repozitároch a dokumentáciach, čím sa ešte viac priblížia k miestnym praktikám Clean Code.
+    
+\subsection{Riadenie výstupu pomocou inštrukcií}
+
+\textbf{Prompt engineering a kontextové inštrukcie:} Aby sme zaručili správny typ generovaného textu, priame inštrukcie (napr. "dodržuj princípy Clean Code", "vytvor testovateľnú funkciu s jasným názvom") v prompt-e výrazne ovplyvňujú kvalitu výstupu. Dobré prompty spolu s relevantným kontextom z repozitára vedú k kvalitnejším a konzistentnejším odpovediam. Napriek tomu existujú obmedzenia a riziká:
+
 \begin{itemize}
-    \item \textbf{Predčasná optimalizácia:} Situácie, keď sa vývojári snažia optimalizovať kód predtým, než je to potrebné, čo môže viesť k zložitejšiemu a menej čitateľnému kódu. Predtým, než začneme optimalizovať, je dôležité mať jasnú predstavu o tom, kde sú skutočné problémy s výkonom a či je optimalizácia naozaj potrebná. Mikro-optimalizácie malých funkcií môžu mať minimálny dopad na celkový výkon komplexného systému.
-    \item \textbf{Preťažovanie funkcionalitami:} Pridávanie príliš veľa funkcií do systému, ktoré nie sú nevyhnutné pre jeho základnú funkcionalitu, čo môže znižovať jeho udržiavateľnosť. S týmto súvisí aj pojem "feature creep", ktorý označuje postupné pridávanie nových funkcií do softvéru, často bez ohľadu na pôvodný plán alebo potreby používateľov.Taktiež z hľadiska Clean Code je spájaný tento pojem s DRY princípom, pretože pridávanie nadbytočných funkcií môže viesť k zníženiu čitateľnosti kódu.
-    \item \textbf{Over-engineering:} Nadmerné navrhovanie systémov s cieľom predvídať budúce potreby, čo môže viesť k zbytočne zložitým riešeniam. Aj keď Clean Code podporuje dobré návrhové princípy, nadmerné zameranie sa na architektonickú čistotu môže spôsobiť, že vývojári budú tráviť príliš veľa času navrhovaním riešení pre hypotetické scenáre. 
+    \item \textbf{Nedostatok celkového kontextu:} Model môže generovať lokálne korektný kód, ktorý však neberie do úvahy širšie architektonické rozhodnutia alebo implicitné zmluvy rozhrania.
+    
+    \item \textbf{Licenčné a etické otázky:} Používanie verejných repozitárov do tréningu alebo pri retrieval môže viesť k problémom s licenciami a atribúciou. Niektoré modely môžu byť trénované na veľkých kolekciách verejne dostupného zdrojového kódu, čo vyvoláva otázky týkajúce sa licencií a atribúcie, a preto teda generovaný kód  obsahuje fragmenty chránené autorskými právami.
+    
+    \item \textbf{Falošná istota v syntaxi:} AI môže vytvoriť kód, ktorý vyzerá čisto no obsahuje logické chyby alebo neefektívne riešenia.
 \end{itemize}
 
-\subsection{Kritika dogmatického uplatňovania \textit{Clean Code}}
+\subsection{Odporúčania pri používaní AI pre generovanie Clean Code}
 
-Niektorí autori a praktici upozorňujú, že princípy \textit{Clean Code} by sa mali chápať ako usmernenie, nie ako absolútny zákon. Esej o "Clean" zdôrazňuje, že "čistota" kódu je kontextuálna — čo je čitateľné a užitočné v jednom projekte, môže byť zbytočne komplikované v inom. Dôležité je hodnotiť prínos refaktoringu vzhľadom na dodávanú hodnotu a náklady na údržbu \cite{CLEANCODE_SAM2011}.
-
-Konkrétne riziká dogmatického prístupu zahŕňajú zvýšenú kognitívnu záťaž, zbytočné vrstvy abstrakcie a skrytý technický dlh, ktorý vzniká pri kontinuálnom prepracovávaní riešení bez jasného merania benefitov \cite{HIDDENCOST_KESWANI2025}.
-
-\subsection{"Clean Code" anti‑patterny a bežné symptómy over‑engineeringu}
-
-Nasledujúce scenáre často signalizujú, že snaha o "čistotu" prešla do prehnanej špecializácie a nadmerného navrhovania:
+Pri nasadzovaní AI do vývojového procesu je odporúčané dbať na tieto zásady \cite{CODECAMP_AICC2026}:
 
 \begin{itemize}
-    \item \textbf{Vytvorenie microservisu pre workflow, ktorý patrí do jediného bounded contextu:} rozdeľovanie funkcionality bez dôkazov o samostatnej škálovateľnosti alebo nezávislom životnom cykle zvyšuje zložitosť infraštruktúry a komunikácie.
-    \item \textbf{Pridanie plnohodnotnej state‑management vrstvy pre stránku s niekoľkými komponentmi:} nadmerné nástroje pre malú DOM/UX logiku zvyšujú overhead a znižujú rýchlosť vývoja.
-    \item \textbf{Budovanie plugin systému pre funkciu s jediným spotrebiteľom:} predikcia budúcich spotrebiteľov môže viesť k zbytočnej všeobecnosti a nákladom na testovanie a dokumentáciu.
+    \item \textbf{Automatická kontrola:} Je vhodné integrovať generovanie s testami tak, aby sa každý návrh overil pred prijatím.
+    
+    \item \textbf{Konzistencia kontextu:} Na zachovanie konzistencie sa používa metóda retrieval z lokálnych repozitárov a zahrňuje štýlové a konvenčné súbory (README, konfiguračné súbory), aby bol výstup v súlade s projektovými pravidlami.
+    
+    \item \textbf{Testy spolu s implementáciou:} Vyžadujeme od AI generovanie súvisiacich unit a integration testov a príkladov použitia spolu s implementáciou.
+    
+    \item \textbf{Ľudský dohľad:} Je dôležite nezlenivieť a robiť striktné code reviews a posudzovať návrhy ľudským recenzentom. Výstupy AI sa musia vždy považovať za návrhy, nie za finálne riešenia.
 \end{itemize}
 
-Tieto anti‑patterny majú spoločné príznaky: dlhšie plánovanie, viac infraštruktúrneho kódu, vyšší počet integračných bodov a znížená schopnosť rýchlo dodať hodnotu používateľovi. Autori, ktorí skúmajú skryté náklady "čistého" kódu, odporúčajú merať dopad takýchto rozhodnutí a preferovať pragmatické riešenia, kým sa nepreukáže potreba zložitosti \cite{HIDDENCOST_KESWANI2025}.
+\subsection{Zťažuje AI a Clean Code testovateľnosť kódu?}
 
-\subsection{Meranie a pragmatizmus}
+Vplyv AI na testovateľnosť kódu nie je jednoznačný. Môže ju buď zlepšiť, alebo zhoršiť, v závislosti od spôsobu použitia \cite{CODECAMP_AICC2026}.
 
-Praktický prístup odporúča: najprv merať (profilovanie, telemetria, používateľská spätná väzba), až potom optimalizovať alebo refaktorovať. Zameranie na rozhrania, kontrakty a testovateľné správanie často prináša výraznejší benefit než predčasné zdokonaľovanie implementácií \cite{CLEANCODE_SAM2011,HIDDENCOST_KESWANI2025}.
+\subsubsection{Ako AI zlepšuje testovanie}
+
+\textbf{Generovanie testov:} AI dokáže na základe špecifikácie alebo existujúcej implementácie navrhnúť jednotkové testy, integračné testy alebo príklady použitia, čo zrýchľuje pokrytie testami.
+    
+\textbf{Podpora TDD a test-first promptov:} Pri zadaní "najprv napíš testy, potom implementáciu" môže AI vygenerovať konzistentnú dvojicu test + implementácia, čím sa podporuje testovateľná architektúra.
+    
+\textbf{Refaktoring pre testovateľnosť:} AI môže navrhnúť rozdelenie veľkých metód, zavedenie závislostí cez dependency injections alebo izolovanie vedľajších efektov — všetko v prospech testovateľnosti.
 
 
+\subsubsection{Ako AI môže zhoršiť testovanie}
+
+\textbf{Povrchne správny, hlboko nesprávny kód:} Generovaný kód môže prejsť jednoduchými testami, no byť krehký pri okrajových prípadoch. Ak testy nie sú komplexné, poskytujú falošný pocit správnej implementácie.
+
+\textbf{Chýbajúca doménová znalosť:} Bez hlbšieho porozumenia domény AI môže vytvoriť rozhrania alebo vedľajšie efekty, ktoré sú ťažko testovateľné.
+
+\textbf{Abstrakcia:} AI môže automaticky zaviesť abstrakcie, ktoré zjednodušia kód na povrchu, ale skomplikujú písanie izolovaných testov, alebo naopak vytvoriť monolitické metódy, ktoré sú ťažké na unit testovanie.
+
+Celkovo je dôležité vnímať AI ako nástroj, ktorý môže zrýchliť vytváranie testovateľného a Clean Code, no bez dobre nastavených pravidiel, metrik a ľudského dohľadu môže viesť k zanedbaniu kvality. Najlepšie výsledky sa dosahujú kombináciou automatizovaných nástrojov  a jasne definovaných procesov.
+
+\subsection{Porovnanie ceny generovania kódu AI a nákladov na udržiavanie Clean Code}
+
+Posledná otázka, ktorej sa v práci budeme venovať, je porovnanie nákladov na generovanie kódu pomocou AI a nákladov na udržiavanie Clean Code. Pozrime sa na túto tému z hľadiska času. AI sama o sebe  umožnuje zrýchliť vývoj softvéru za cenu, ktorú by developer ušeril namiesto písania kódu, teda môžeme považovať tieto ceny za ekvivalentné a samotné použitie AI automaticky negarantuje zníženie ani zvýšenie nákladov na vývoj softvéru. Rozhodujúce je, či sa generovaný kód integruje, prejde kvalitným review a je dostatočne pochopený tímom. Keďže moderné modely generujú väčšinou syntakticky správny kód, ide hlavne o správnu architektúru \cite{TECHNICALDEBT_2026}.
+
+\subsubsection{AI Clean Code vs. AI Messy Code}
+
+Pri \textbf{AI Clean Code} sa technický dlh zvyšuje štandardným tempom približne o 10--15\,\% za 90 dní. Náklady na údržbu zostávajú v prvom roku na úrovni bežného vývoja, v druhom roku rastú na približne 1,2--1,5-násobok a v dlhodobom horizonte dosahujú približne 1,5-násobok pôvodných nákladov. Miera výskytu "code smells" je približne 45\,\%, čo zodpovedá úrovni ľudsky písaného kódu. Náklady na opravu chýb, čas potrebný na revíziu kódu aj náročnosť testovania zostávajú na štandardnej úrovni\cite{TECHNICALDEBT_2026}.
+
+Pri \textbf{AI Messy Code} rastie technický dlh výrazne rýchlejšie, približne o 30--41\,\% za 90 dní. Hoci sú náklady na údržbu počas prvého roka podobné ako pri čistom kóde, v druhom roku dosahujú približne 2,5-násobok a po troch a viac rokoch až 4-násobok pôvodnej hodnoty. Miera výskytu "code smells" sa pohybuje medzi 78 a 92\,\% v závislosti od použitého nástroja. Oprava chýb je 3--4-krát drahšia v dôsledku horšieho porozumenia kontextu kódu, proces "code review" si vyžaduje približne o 9\,\% viac času a testovanie odhaľuje približne 1,7-krát viac defektov\cite{TECHNICALDEBT_2026}.

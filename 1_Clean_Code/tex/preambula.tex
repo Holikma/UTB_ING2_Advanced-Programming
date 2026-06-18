@@ -22,7 +22,7 @@
 \usepackage{url}
 \usepackage[labelsep=colon,tableposition=top,justification=raggedright, singlelinecheck=off, font={footnotesize,bf,sf}]{caption}
 \usepackage{chngcntr}
-
+\usepackage{enumitem}
 \usepackage{hyperref}
 
 % ------------------------
@@ -64,7 +64,10 @@
 \titleformat*{\subsection}{\large\sffamily\bfseries}
 \titleformat*{\subsubsection}{\normalsize\sffamily\bfseries}
 \titleformat*{\paragraph}{\normalsize\sffamily\bfseries}
-
+% ------------------------
+% ITEMIZE
+% ------------------------
+\setlist[itemize]{leftmargin=16pt, partopsep=0pt, parsep=0pt}
 % ------------------------
 % HEADERS & FOOTERS
 % ------------------------
